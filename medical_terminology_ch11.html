@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Terminology — Chapter 11</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  :root {
+    --teal:   #0E7490; --teal-lt: #CFFAFE; --teal-dk: #083344;
+    --green:  #166534; --green-lt:#DCFCE7; --green-dk:#052E16;
+    --blue:   #1D4ED8; --blue-lt: #DBEAFE; --blue-dk: #1E3A8A;
+    --violet: #6D28D9; --violet-lt:#EDE9FE; --violet-dk:#2E1065;
+    --amber:  #B45309; --amber-lt:#FEF3C7; --amber-dk:#451A03;
+    --coral:  #C2410C; --coral-lt:#FFEDD5; --coral-dk:#431407;
+    --slate:  #334155; --slate-lt:#F1F5F9; --slate-dk:#0F172A;
+    --gray-50:#F9FAFB; --gray-100:#F3F4F6; --gray-200:#E5E7EB;
+    --gray-400:#9CA3AF; --gray-600:#4B5563; --gray-700:#374151; --black:#111827;
+    --font:'DM Sans',sans-serif; --mono:'DM Mono',monospace;
+    --radius:10px; --radius-sm:6px;
+  }
+  body { font-family:var(--font); background:var(--gray-50); color:var(--black); }
+  .module { max-width:860px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+  .module-header { background:#fff; border:1px solid var(--gray-200); border-radius:var(--radius); padding:1.75rem 2rem; margin-bottom:1.5rem; display:flex; gap:1.5rem; align-items:flex-start; }
+  .header-icon { width:52px; height:52px; border-radius:var(--radius-sm); background:var(--teal-lt); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .header-icon svg { width:28px; height:28px; stroke:var(--teal); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+  .header-text h1 { font-size:20px; font-weight:600; }
+  .header-text p { font-size:13px; color:var(--gray-400); margin-top:3px; }
+  .progress-wrap { margin-top:14px; display:flex; align-items:center; gap:10px; }
+  .progress-bg { flex:1; height:5px; background:var(--gray-200); border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--teal); border-radius:3px; transition:width 0.5s; width:0%; }
+  .progress-label { font-size:12px; color:var(--gray-400); white-space:nowrap; }
+  .nav-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1.5rem; }
+  .tab { padding:7px 16px; font-size:13px; font-family:var(--font); font-weight:500; border:1px solid var(--gray-200); border-radius:100px; background:#fff; color:var(--gray-600); cursor:pointer; transition:all 0.15s; }
+  .tab:hover { border-color:var(--teal); color:var(--teal); }
+  .tab.active { background:var(--teal); border-color:var(--teal); color:#fff; }
+  .section { display:none; }
+  .section.active { display:block; animation:fadeIn 0.2s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  .card { background:#fff; border:1px solid var(--gray-200); border-radius:var(--radius); padding:1.25rem 1.5rem; margin-bottom:1rem; }
+  .card-title { font-size:14px; font-weight:600; display:flex; align-items:center; gap:7px; margin-bottom:12px; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
+  @media(max-width:620px){ .two-col,.three-col{grid-template-columns:1fr} }
+  .badge { font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px; }
+  .badge-teal   { background:var(--teal-lt);   color:var(--teal-dk); }
+  .badge-green  { background:var(--green-lt);  color:var(--green-dk); }
+  .badge-blue   { background:var(--blue-lt);   color:var(--blue-dk); }
+  .badge-violet { background:var(--violet-lt); color:var(--violet-dk); }
+  .badge-amber  { background:var(--amber-lt);  color:var(--amber-dk); }
+  .badge-coral  { background:var(--coral-lt);  color:var(--coral-dk); }
+  .badge-slate  { background:var(--slate-lt);  color:var(--slate-dk); }
+  .tip { border-radius:var(--radius-sm); padding:10px 14px; font-size:13px; line-height:1.6; margin-top:10px; }
+  .tip.teal   { background:var(--teal-lt);   color:var(--teal-dk);   border-left:3px solid var(--teal); }
+  .tip.green  { background:var(--green-lt);  color:var(--green-dk);  border-left:3px solid var(--green); }
+  .tip.amber  { background:var(--amber-lt);  color:var(--amber-dk);  border-left:3px solid var(--amber); }
+  .tip.violet { background:var(--violet-lt); color:var(--violet-dk); border-left:3px solid var(--violet); }
+  .tip.coral  { background:var(--coral-lt);  color:var(--coral-dk);  border-left:3px solid var(--coral); }
+  .tip.blue   { background:var(--blue-lt);   color:var(--blue-dk);   border-left:3px solid var(--blue); }
+  .vs-item { border:1px solid var(--gray-200); border-radius:var(--radius-sm); padding:10px 12px; }
+  .vs-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
+  .vs-body { font-size:13px; color:var(--gray-600); line-height:1.5; }
+  .path-row { display:flex; gap:12px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--gray-200); }
+  .path-row:last-child { border-bottom:none; }
+  .path-num { width:28px; height:28px; border-radius:50%; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .path-name { font-size:13.5px; font-weight:600; color:var(--black); }
+  .path-cf { font-family:var(--mono); font-size:11px; color:var(--teal); background:var(--teal-lt); padding:1px 5px; border-radius:3px; margin-left:5px; }
+  .path-desc { font-size:12.5px; color:var(--gray-600); margin-top:2px; line-height:1.4; }
+  .pitem { display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--gray-200); }
+  .pitem:last-child { border-bottom:none; padding-bottom:0; }
+  .pitem:first-child { padding-top:0; }
+  .pname { font-size:13.5px; font-weight:600; color:var(--black); }
+  .pdef  { font-size:12.5px; color:var(--gray-600); margin-top:2px; line-height:1.4; }
+  .sub-tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem; }
+  .sub-tab { padding:5px 13px; font-size:12px; font-family:var(--font); font-weight:500; border:1px solid var(--gray-200); border-radius:100px; background:#fff; color:var(--gray-600); cursor:pointer; transition:all 0.15s; }
+  .sub-tab:hover { border-color:var(--teal); color:var(--teal); }
+  .sub-tab.active { background:var(--teal); border-color:var(--teal); color:#fff; }
+  .vpanel { display:none; }
+  .vpanel.active { display:block; }
+  .vtable { width:100%; border-collapse:collapse; font-size:13px; }
+  .vtable th { text-align:left; padding:8px 10px; color:var(--gray-400); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--gray-200); }
+  .vtable td { padding:8px 10px; border-bottom:1px solid var(--gray-100); color:var(--black); vertical-align:top; }
+  .vtable tr:last-child td { border-bottom:none; }
+  .vtable tr:hover td { background:var(--gray-50); }
+  .vtable code { font-family:var(--mono); font-size:12px; color:var(--teal-dk); background:var(--teal-lt); padding:1px 6px; border-radius:3px; }
+  .fc-nav { display:flex; align-items:center; gap:12px; margin-bottom:1rem; }
+  .fc-counter { font-size:13px; color:var(--gray-400); flex:1; text-align:center; }
+  .fc-btn { width:36px; height:36px; border:1px solid var(--gray-200); border-radius:50%; background:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--gray-600); font-size:16px; transition:all 0.15s; }
+  .fc-btn:hover { border-color:var(--teal); color:var(--teal); }
+  .flip-wrap { perspective:1000px; height:160px; cursor:pointer; user-select:none; }
+  .flip-inner { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.5s cubic-bezier(.4,0,.2,1); }
+  .flip-inner.flipped { transform:rotateY(180deg); }
+  .flip-front,.flip-back { position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; text-align:center; border:1px solid var(--gray-200); }
+  .flip-front { background:#fff; }
+  .flip-back  { background:var(--teal-lt); border-color:#67E8F9; transform:rotateY(180deg); }
+  .flip-term { font-size:22px; font-weight:600; color:var(--black); font-family:var(--mono); }
+  .flip-hint { font-size:11px; color:var(--gray-400); margin-top:6px; text-transform:uppercase; letter-spacing:0.06em; }
+  .flip-def  { font-size:16px; font-weight:600; color:var(--teal-dk); }
+  .flip-ex   { font-size:12px; color:var(--teal); margin-top:6px; font-family:var(--mono); }
+  .fc-shuffle { padding:6px 14px; font-size:12px; font-family:var(--font); border:1px solid var(--gray-200); border-radius:100px; background:#fff; color:var(--gray-600); cursor:pointer; margin-left:auto; display:block; margin-bottom:10px; }
+  .fc-shuffle:hover { border-color:var(--teal); color:var(--teal); }
+  .quiz-progress { display:flex; gap:4px; flex-wrap:wrap; margin-bottom:1.25rem; }
+  .q-dot { width:10px; height:10px; border-radius:50%; background:var(--gray-200); }
+  .q-dot.pass { background:var(--teal); }
+  .q-dot.fail { background:#E24B4A; }
+  .quiz-q-text { font-size:16px; font-weight:600; margin-bottom:1rem; line-height:1.5; }
+  .quiz-opts { display:flex; flex-direction:column; gap:8px; margin-bottom:1rem; }
+  .q-opt { padding:11px 16px; border:1px solid var(--gray-200); border-radius:var(--radius-sm); background:#fff; font-size:14px; font-family:var(--font); cursor:pointer; text-align:left; transition:all 0.15s; }
+  .q-opt:hover:not(:disabled) { border-color:var(--teal); background:var(--teal-lt); }
+  .q-opt.correct { background:var(--green-lt); border-color:var(--green); color:var(--green-dk); font-weight:500; }
+  .q-opt.wrong   { background:#FCEBEB; border-color:#E24B4A; color:#501313; }
+  .q-fb { font-size:13px; padding:9px 14px; border-radius:var(--radius-sm); margin-bottom:1rem; }
+  .q-fb.correct { background:var(--green-lt); color:var(--green-dk); }
+  .q-fb.wrong   { background:#FCEBEB; color:#501313; }
+  .quiz-next { padding:9px 20px; font-size:13px; font-family:var(--font); font-weight:500; border:1px solid var(--gray-200); border-radius:100px; background:#fff; cursor:pointer; }
+  .score-wrap { text-align:center; padding:2rem 0 1rem; }
+  .score-big { font-size:52px; font-weight:700; line-height:1; }
+  .score-big.great { color:var(--teal); }
+  .score-big.ok    { color:var(--amber); }
+  .score-big.retry { color:#E24B4A; }
+  .score-msg { font-size:15px; color:var(--gray-600); margin-top:8px; margin-bottom:1.5rem; }
+  .retry-btn { padding:10px 24px; font-size:14px; font-family:var(--font); font-weight:500; border:1px solid var(--teal); border-radius:100px; background:var(--teal-lt); color:var(--teal-dk); cursor:pointer; transition:all 0.15s; }
+  .retry-btn:hover { background:var(--teal); color:#fff; }
+</style>
+</head>
+<body>
+<div class="module">
+
+  <div class="module-header">
+    <div class="header-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5z"/></svg>
+    </div>
+    <div style="flex:1">
+      <div class="header-text">
+        <h1>Medical Terminology — Chapter 11</h1>
+        <p>Respiratory System &nbsp;·&nbsp; 7 sections &nbsp;·&nbsp; 26 flashcards &nbsp;·&nbsp; 12-question quiz</p>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+        <div class="progress-label" id="prog-label">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-row" role="tablist">
+    <button class="tab active" onclick="showSec('overview',this)">Overview</button>
+    <button class="tab" onclick="showSec('anatomy',this)">Anatomy</button>
+    <button class="tab" onclick="showSec('breathing',this)">Breathing terms</button>
+    <button class="tab" onclick="showSec('pathology',this)">Pathology</button>
+    <button class="tab" onclick="showSec('procedures',this)">Procedures</button>
+    <button class="tab" onclick="showSec('vocab',this)">Vocabulary</button>
+    <button class="tab" onclick="showSec('flashcards',this)">Flashcards</button>
+    <button class="tab" onclick="showSec('quiz',this)">Quiz</button>
+  </div>
+
+  <!-- ===== OVERVIEW ===== -->
+  <div class="section active" id="sec-overview">
+    <div class="card">
+      <div class="card-title" style="color:var(--teal)">Functions of the Respiratory System</div>
+      <div class="three-col">
+        <div class="vs-item"><div class="vs-head" style="color:var(--teal)">Gas exchange</div><div class="vs-body">O₂ into blood and CO₂ out at alveoli (external respiration)</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--green)">Internal respiration</div><div class="vs-body">O₂ / CO₂ exchange between blood and body cells</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--blue)">Acid-base balance</div><div class="vs-body">CO₂ regulation controls blood pH (CO₂ + H₂O → H₂CO₃)</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--amber)">Voice production</div><div class="vs-body">Larynx (laryng/o) and vocal cords produce sound (phon/o)</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--violet)">Olfaction</div><div class="vs-body">Sense of smell via olfactory receptors in nasal cavity</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--coral)">Protection</div><div class="vs-body">Cilia, mucus, and cough reflex trap and remove pathogens</div></div>
+      </div>
+      <div class="tip teal"><strong>Specialty:</strong> Pulmonology · <strong>Specialist:</strong> Pulmonologist (pulmon/o) · Also: Thoracic surgery (thorac/o) · Key combining forms: <strong>pneum/o, pneumon/o</strong> (lung/air), <strong>pulmon/o</strong> (lung), <strong>bronch/o</strong> (bronchus), <strong>pleur/o</strong> (pleura)</div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="color:var(--green)">Respiratory Tract — Upper vs. Lower</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="vs-item"><div class="vs-head" style="color:var(--teal)">Upper respiratory tract</div><div class="vs-body">Nose · Paranasal sinuses · Pharynx (nasopharynx, oropharynx, laryngopharynx) · Larynx · Epiglottis · Trachea (upper portion)</div></div>
+          <div class="vs-item"><div class="vs-head" style="color:var(--blue)">Lower respiratory tract</div><div class="vs-body">Trachea (lower) · Bronchi · Bronchioles · Alveoli · Pleura · Diaphragm</div></div>
+        </div>
+        <div class="tip green"><strong>Mediastinum</strong> — central compartment of thoracic cavity between the lungs; contains heart, trachea, esophagus, great vessels. <strong>Pleura</strong> (pleur/o) — two-layered serous membrane surrounding each lung; visceral (on lung) and parietal (on chest wall).</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--amber)">Key Anatomy Terms</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span class="badge badge-teal">Nose (nas/o, rhin/o)</span>
+          <span class="badge badge-green">Pharynx (pharyng/o)</span>
+          <span class="badge badge-blue">Larynx (laryng/o)</span>
+          <span class="badge badge-violet">Trachea (trache/o)</span>
+          <span class="badge badge-amber">Bronchus (bronch/o)</span>
+          <span class="badge badge-coral">Bronchiole (bronchiol/o)</span>
+          <span class="badge badge-teal">Alveolus (alveol/o)</span>
+          <span class="badge badge-green">Lung (pneum/o, pulmon/o)</span>
+          <span class="badge badge-blue">Pleura (pleur/o)</span>
+          <span class="badge badge-violet">Sinus (sin/o, sinus/o)</span>
+          <span class="badge badge-amber">Adenoid (adenoid/o)</span>
+          <span class="badge badge-coral">Tonsil (tonsill/o)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ANATOMY ===== -->
+  <div class="section" id="sec-anatomy">
+    <div class="card">
+      <div class="card-title" style="color:var(--teal)">The Respiratory Tract — Air Pathway</div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div class="path-row">
+          <div class="path-num" style="background:var(--teal-lt);color:var(--teal-dk)">1</div>
+          <div><div class="path-name">Nose &amp; Nasal Cavity<span class="path-cf">nas/o, rhin/o</span></div><div class="path-desc">Air enters here; nasal hairs and mucus filter particles; nasal conchae warm and humidify air; olfactory receptors detect smell (olfaction). Nasal septum (sept/o) divides left and right. Paranasal sinuses (sin/o, sinus/o) drain into nasal cavity.</div></div>
+        </div>
+        <div class="path-row">
+          <div class="path-num" style="background:var(--green-lt);color:var(--green-dk)">2</div>
+          <div><div class="path-name">Pharynx<span class="path-cf">pharyng/o</span></div><div class="path-desc">Throat; shared passage for air and food. Three regions: <strong>Nasopharynx</strong> (behind nose; contains pharyngeal tonsils/adenoids [adenoid/o] and eustachian tube openings), <strong>Oropharynx</strong> (behind mouth; palatine tonsils [tonsill/o]), <strong>Laryngopharynx</strong> (lowest; leads to larynx and esophagus).</div></div>
+        </div>
+        <div class="path-row">
+          <div class="path-num" style="background:var(--blue-lt);color:var(--blue-dk)">3</div>
+          <div><div class="path-name">Larynx (Voice Box)<span class="path-cf">laryng/o</span></div><div class="path-desc">Contains vocal cords for sound production (phon/o). Epiglottis = flap that covers larynx during swallowing to prevent aspiration. Adam's apple = thyroid cartilage.</div></div>
+        </div>
+        <div class="path-row">
+          <div class="path-num" style="background:var(--violet-lt);color:var(--violet-dk)">4</div>
+          <div><div class="path-name">Trachea (Windpipe)<span class="path-cf">trache/o</span></div><div class="path-desc">~12 cm rigid tube reinforced by C-shaped cartilage rings; carries air to bronchi. Cilia sweep mucus upward (mucociliary escalator). Carina = point where trachea bifurcates into left and right main bronchi.</div></div>
+        </div>
+        <div class="path-row">
+          <div class="path-num" style="background:var(--amber-lt);color:var(--amber-dk)">5</div>
+          <div><div class="path-name">Bronchi &amp; Bronchioles<span class="path-cf">bronch/o, bronchiol/o</span></div><div class="path-desc">Right main bronchus: shorter, wider, more vertical → more likely to aspirate foreign objects. Left main bronchus: longer, narrower. Bronchi → secondary (lobar) → tertiary (segmental) → bronchioles → terminal bronchioles → respiratory bronchioles. No cartilage in bronchioles — smooth muscle only.</div></div>
+        </div>
+        <div class="path-row" style="border-bottom:none">
+          <div class="path-num" style="background:var(--coral-lt);color:var(--coral-dk)">6</div>
+          <div><div class="path-name">Alveoli<span class="path-cf">alveol/o</span></div><div class="path-desc">Tiny air sacs at the end of respiratory bronchioles; ~300 million per lung; walls are ONE cell thick; surrounded by pulmonary capillaries. Site of gas exchange (O₂ in, CO₂ out). Covered by surfactant (reduces surface tension; prevents collapse).</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="color:var(--violet)">Pleura &amp; Lung Lobes</div>
+        <div style="font-size:13px;color:var(--gray-600);line-height:1.9">
+          <strong style="color:var(--black)">Pleura (pleur/o)</strong> — double-layered serous membrane<br>
+          <strong style="color:var(--black)">Visceral pleura</strong> — adheres directly to lung surface<br>
+          <strong style="color:var(--black)">Parietal pleura</strong> — lines chest wall<br>
+          <strong style="color:var(--black)">Pleural space</strong> — potential space between layers; contains lubricating fluid<br>
+          <strong style="color:var(--black)">Right lung</strong> — 3 lobes (lob/o): upper, middle, lower<br>
+          <strong style="color:var(--black)">Left lung</strong> — 2 lobes: upper and lower (cardiac notch for heart)
+        </div>
+        <div class="tip violet">Lobectomy (lob/o + -ectomy) = surgical removal of a lung lobe; most common surgery for early-stage lung cancer. Pneumonectomy = removal of entire lung.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--amber)">Diaphragm &amp; Paranasal Sinuses</div>
+        <div style="font-size:13px;color:var(--gray-600);line-height:1.9">
+          <strong style="color:var(--black)">Diaphragm (diaphragm/o)</strong> — dome-shaped muscle separating thoracic and abdominal cavities; primary muscle of inspiration; contracts → flattens → ↑ thoracic volume → air drawn in<br><br>
+          <strong style="color:var(--black)">Paranasal sinuses (sin/o, sinus/o)</strong> — air-filled cavities in skull bones:<br>
+          • Frontal sinuses (forehead)<br>
+          • Maxillary sinuses (cheekbones) — largest<br>
+          • Ethmoid sinuses (between eyes)<br>
+          • Sphenoid sinuses (behind ethmoid)
+        </div>
+        <div class="tip amber"><strong>Eustachian tube (salping/o)</strong> — connects nasopharynx to middle ear; equalizes ear pressure; pathway for middle ear infections from pharynx.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BREATHING TERMS ===== -->
+  <div class="section" id="sec-breathing">
+    <div class="card">
+      <div class="card-title" style="color:var(--green)">Breathing &amp; Respiration Terms — -pnea suffix</div>
+      <div class="tip green" style="margin-bottom:1rem">The suffix <strong>-pnea</strong> = breathing condition. Prefix modifies type: eu- (normal), dys- (difficult), a- (without), brady- (slow), tachy- (fast), hyper- (excessive), ortho- (straight/upright).</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="vs-item"><div class="vs-head" style="color:var(--teal)">Eupnea (eu- + -pnea)</div><div class="vs-body">Normal, easy breathing. eu- = good/normal. Rate: 12–20 breaths/min in adults.</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--violet)">Dyspnea (dys- + -pnea)</div><div class="vs-body">Difficult or labored breathing; subjective breathlessness; symptom of many cardiopulmonary diseases.</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--amber)">Apnea (a- + -pnea)</div><div class="vs-body">Absence of breathing. Sleep apnea: repetitive cessation during sleep → hypoxia → arousals.</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--coral)">Orthopnea (orth/o + -pnea)</div><div class="vs-body">Difficulty breathing when lying flat; relieved by sitting upright. orth/o = straight. Classic sign of heart failure.</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--blue)">Bradypnea (brady- + -pnea)</div><div class="vs-body">Abnormally SLOW breathing rate. Causes: opioid overdose, elevated ICP, severe hypothyroidism.</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--green)">Tachypnea (tachy- + -pnea)</div><div class="vs-body">Abnormally RAPID breathing rate (&gt;20/min). Causes: fever, anxiety, hypoxia, pulmonary embolism.</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--teal)">Hyperpnea (hyper- + -pnea)</div><div class="vs-body">Increased depth AND rate of breathing; as in exercise or metabolic acidosis (Kussmaul breathing).</div></div>
+        <div class="vs-item"><div class="vs-head" style="color:var(--slate)">Hypercapnia (hyper- + capn/o)</div><div class="vs-body">Excess CO₂ in blood; from hypoventilation; leads to respiratory acidosis. CO₂ = capn/o.</div></div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="color:var(--teal)">Inhalation vs. Exhalation</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vs-item"><div class="vs-head" style="color:var(--teal)">Inhalation / Inspiration (in- prefix)</div><div class="vs-body">Active process. Diaphragm contracts + external intercostals contract → thoracic cavity expands → pressure drops → air flows IN.</div></div>
+          <div class="vs-item"><div class="vs-head" style="color:var(--violet)">Exhalation / Expiration (ex- prefix)</div><div class="vs-body">Passive at rest. Diaphragm and intercostals relax → thoracic cavity recoils → pressure rises → air flows OUT.</div></div>
+        </div>
+        <div class="tip teal"><strong>Spirometry</strong> (spir/o + -metry) — measures lung volumes and airflow; key test for COPD and asthma; values include FVC (forced vital capacity) and FEV₁.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--amber)">Sputum &amp; Other Respiratory Signs</div>
+        <div style="font-size:13px;color:var(--gray-600);line-height:1.9">
+          <strong style="color:var(--black)">Sputum</strong> — mucus + cellular debris coughed up from lower airways; culture diagnoses infection<br>
+          <strong style="color:var(--black)">Hemoptysis</strong> (hem/o + -ptysis) — coughing up blood; from TB, lung cancer, bronchiectasis<br>
+          <strong style="color:var(--black)">Rhinorrhea</strong> (rhin/o + -rrhea) — runny nose; watery nasal discharge<br>
+          <strong style="color:var(--black)">Cyanosis</strong> (cyan/o + -osis) — blue skin from O₂ deficiency<br>
+          <strong style="color:var(--black)">Oximetry</strong> (ox/o + -metry) — measurement of O₂ saturation; pulse oximetry normal: ≥95%<br>
+          <strong style="color:var(--black)">Thoracodynia</strong> (thorac/o + -dynia) — chest pain
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PATHOLOGY ===== -->
+  <div class="section" id="sec-pathology">
+    <div class="sub-tabs" id="path-tabs">
+      <button class="sub-tab active" onclick="showPath('upper',this)">Upper respiratory</button>
+      <button class="sub-tab" onclick="showPath('lower',this)">Lower respiratory</button>
+      <button class="sub-tab" onclick="showPath('obstructive',this)">Obstructive disease</button>
+      <button class="sub-tab" onclick="showPath('pleura',this)">Pleura &amp; other</button>
+    </div>
+    <div class="card">
+      <div class="vpanel active" id="pp-upper">
+        <div class="pitem"><div><div class="pname">Rhinorrhea</div><div class="pdef">Runny nose; watery nasal discharge. <em>rhin/o + -rrhea (flow)</em>. Symptom of URI, allergies, sinusitis.</div></div></div>
+        <div class="pitem"><div><div class="pname">Sinusitis</div><div class="pdef">Inflammation of the paranasal sinuses. <em>sinus/o + -itis</em>. Acute (viral URI) or chronic (bacterial, fungal, polyps). Symptoms: facial pain/pressure, nasal congestion, purulent discharge, anosmia.</div></div></div>
+        <div class="pitem"><div><div class="pname">Rhinomycosis</div><div class="pdef">Fungal infection of the nose. <em>rhin/o + myc/o (fungus) + -osis</em>. Can be serious in immunocompromised patients (mucormycosis).</div></div></div>
+        <div class="pitem"><div><div class="pname">Pharyngitis</div><div class="pdef">Inflammation of the pharynx (throat). <em>pharyng/o + -itis</em>. Most commonly viral (>90%); Group A Strep (bacterial) requires antibiotics to prevent rheumatic fever.</div></div></div>
+        <div class="pitem"><div><div class="pname">Laryngitis</div><div class="pdef">Inflammation of the larynx. <em>laryng/o + -itis</em>. Hoarseness, loss of voice (aphonia). Viral (URI) is most common; voice rest is treatment.</div></div></div>
+        <div class="pitem"><div><div class="pname">Nasal polyps</div><div class="pdef">Non-cancerous benign growths in nasal passages; associated with chronic sinusitis, allergies, and aspirin sensitivity (Samter's triad). Cause congestion and anosmia.</div></div></div>
+      </div>
+      <div class="vpanel" id="pp-lower">
+        <div class="pitem"><div><div class="pname">Pneumonia</div><div class="pdef">Infection/inflammation of lung parenchyma (alveoli). <em>pneumon/o + -ia</em>. Causes: bacterial (Streptococcus pneumoniae most common), viral (influenza, COVID-19), fungal, atypical (Mycoplasma). Symptoms: fever, productive cough, pleuritic chest pain, dyspnea. Diagnosis: chest X-ray (consolidation).</div></div></div>
+        <div class="pitem"><div><div class="pname">Tuberculosis (TB)</div><div class="pdef">Mycobacterium tuberculosis infection; primarily affects lungs; spread by airborne droplets. Primary TB often latent (PPD/TST positive). Active TB: hemoptysis, night sweats, weight loss, fever. Treatment: 6-month RIPE therapy (Rifampin, Isoniazid, Pyrazinamide, Ethambutol).</div></div></div>
+        <div class="pitem"><div><div class="pname">Bronchitis</div><div class="pdef">Inflammation of the bronchi. <em>bronch/o + -itis</em>. Acute (viral, productive cough 3 weeks): self-limited. Chronic (COPD): productive cough ≥3 months/year for ≥2 years; from smoking.</div></div></div>
+        <div class="pitem"><div><div class="pname">Atelectasis</div><div class="pdef">Collapse of all or part of a lung or alveoli. <em>atelos (incomplete) + ectasis (dilation/expansion)</em>. Causes: mucus plugging, prolonged bed rest, post-surgical. Leads to hypoxia. Prevention: deep breathing, incentive spirometry.</div></div></div>
+        <div class="pitem"><div><div class="pname">Pneumoconiosis</div><div class="pdef">Occupational lung disease from inhaled dust particles. <em>pneumon/o + coni/o (dust) + -osis</em>. Types: silicosis (silica dust), asbestosis (asbestos), coal workers' (black lung). Leads to fibrosis and progressive restrictive lung disease.</div></div></div>
+      </div>
+      <div class="vpanel" id="pp-obstructive">
+        <div class="pitem"><div><div class="pname">Asthma</div><div class="pdef">Chronic inflammatory airway disease with reversible bronchoconstriction. <em>astr- = panting</em>. Triggers: allergens, exercise, cold air, infections. Symptoms: wheezing, dyspnea, chest tightness, cough. Treatment: bronchodilators (beta-2 agonists), inhaled corticosteroids.</div></div></div>
+        <div class="pitem"><div><div class="pname">Emphysema</div><div class="pdef">Permanent destruction of alveolar walls → enlarged air spaces → reduced surface area for gas exchange. Part of COPD. Barrel chest, pursed-lip breathing. Caused by smoking and alpha-1 antitrypsin deficiency.</div></div></div>
+        <div class="pitem"><div><div class="pname">COPD — Chronic obstructive pulmonary disease</div><div class="pdef">Umbrella term for chronic bronchitis + emphysema; progressive, irreversible airflow obstruction. Leading cause: cigarette smoking. Diagnosed by spirometry (FEV₁/FVC &lt;0.70). Treatment: bronchodilators, steroids, O₂ therapy, pulmonary rehab.</div></div></div>
+        <div class="pitem"><div><div class="pname">Bronchiectasis</div><div class="pdef">Permanent, abnormal widening and scarring of bronchi (-ectasis = dilation/expansion); from recurrent infections (CF, TB). Copious purulent sputum, hemoptysis. Treated with airway clearance and antibiotics.</div></div></div>
+        <div class="tip teal"><strong>Obstructive vs. Restrictive lung disease:</strong> Obstructive (asthma, COPD, bronchiectasis) = airflow out is blocked; FEV₁ reduced more than FVC. Restrictive (pneumoconiosis, pulmonary fibrosis) = lung cannot fully expand; both FEV₁ and FVC reduced equally.</div>
+      </div>
+      <div class="vpanel" id="pp-pleura">
+        <div class="pitem"><div><div class="pname">Pleurisy (Pleuritis)</div><div class="pdef">Inflammation of the pleura. <em>pleur/o + -isy (-itis)</em>. Sharp pleuritic chest pain that worsens with breathing; friction rub on auscultation. Causes: viral, pneumonia, PE, autoimmune.</div></div></div>
+        <div class="pitem"><div><div class="pname">Pneumothorax</div><div class="pdef">Air in the pleural space (pneum/o + -thorax). Spontaneous (tall thin males, bleb rupture), traumatic, or tension (life-threatening emergency — tracheal deviation away). Treatment: needle decompression, chest tube.</div></div></div>
+        <div class="pitem"><div><div class="pname">Hemothorax</div><div class="pdef">Blood in the pleural space (hem/o + -thorax). From trauma, surgery, malignancy. → compresses lung → dyspnea. Treatment: chest tube drainage.</div></div></div>
+        <div class="pitem"><div><div class="pname">Pulmonary embolism (PE)</div><div class="pdef">Blood clot (usually from DVT) lodges in pulmonary artery; blocks blood flow → hypoxia. Classic triad: dyspnea, chest pain, hemoptysis. Diagnosis: CT pulmonary angiography (CTPA). Treatment: anticoagulation.</div></div></div>
+        <div class="pitem"><div><div class="pname">Pulmonary fibrosis</div><div class="pdef">Scarring and stiffening of lung tissue; progressive and irreversible restrictive lung disease. Idiopathic (IPF) or from toxins, autoimmune, radiation. Bilateral interstitial infiltrates on imaging. Treated with antifibrotics.</div></div></div>
+        <div class="pitem"><div><div class="pname">Lung carcinoma</div><div class="pdef">Most lethal cancer in US; majority from smoking. Types: SCLC (small cell) and NSCLC (non-small cell: adenocarcinoma, squamous, large cell). Symptoms: hemoptysis, weight loss, persistent cough, hoarseness. Screening: low-dose CT (LDCT) in high-risk smokers.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PROCEDURES ===== -->
+  <div class="section" id="sec-procedures">
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title" style="color:var(--teal)">Diagnostic Procedures</div>
+        <div class="pitem"><div><div class="pname">Spirometry (spir/o + -metry)</div><div class="pdef">Measures lung volumes and airflow; diagnoses and monitors asthma, COPD; measures FVC, FEV₁, FEV₁/FVC ratio</div></div></div>
+        <div class="pitem"><div><div class="pname">Oximetry (ox/o + -metry)</div><div class="pdef">Pulse oximetry; non-invasive measurement of blood O₂ saturation via fingertip probe; normal SpO₂ ≥95%</div></div></div>
+        <div class="pitem"><div><div class="pname">Chest X-ray (CXR)</div><div class="pdef">First-line imaging; detects pneumonia (consolidation), pneumothorax, pleural effusion, cardiomegaly, lung masses</div></div></div>
+        <div class="pitem"><div><div class="pname">CT chest / CTPA</div><div class="pdef">Detailed cross-sectional imaging; diagnoses pulmonary embolism (CTPA), lung cancer, interstitial disease; low-dose CT screens for lung cancer</div></div></div>
+        <div class="pitem"><div><div class="pname">Bronchoscopy (bronch/o + -scopy)</div><div class="pdef">Flexible scope passed through mouth/nose into bronchi; visualizes airways; biopsy; BAL (bronchoalveolar lavage); removes foreign bodies</div></div></div>
+        <div class="pitem"><div><div class="pname">Auscultation &amp; percussion (A&amp;P)</div><div class="pdef">Auscultation: listen with stethoscope (breath sounds, crackles, wheezes, friction rub). Percussion: tap chest to detect fluid (dull) or air (hyperresonant).</div></div></div>
+        <div class="pitem"><div><div class="pname">ABG (arterial blood gas)</div><div class="pdef">Measures pH, PaO₂, PaCO₂, HCO₃⁻; assesses respiratory and metabolic acid-base balance; diagnoses respiratory failure</div></div></div>
+        <div class="pitem"><div><div class="pname">Sputum culture</div><div class="pdef">Lab culture of expectorated sputum; identifies causative organism in pneumonia, TB, bronchiectasis; guides antibiotic therapy</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--coral)">Therapeutic Procedures</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);margin-bottom:6px">Airway management</div>
+        <div class="pitem"><div><div class="pname">Tracheostomy (trache/o + -stomy)</div><div class="pdef">Surgical creation of a permanent or semi-permanent opening into the trachea through the neck; for long-term ventilation, airway obstruction</div></div></div>
+        <div class="pitem"><div><div class="pname">Tracheotomy (trache/o + -tomy)</div><div class="pdef">Incision into the trachea; emergency airway access; temporary. Tracheotomy = incision; tracheostomy = opening (stoma created)</div></div></div>
+        <div class="pitem"><div><div class="pname">Endotracheal intubation</div><div class="pdef">Tube inserted through mouth/nose into trachea; secures airway; allows mechanical ventilation; used in general anesthesia and respiratory failure</div></div></div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);margin:10px 0 6px">Surgery</div>
+        <div class="pitem"><div><div class="pname">Lobectomy (lob/o + -ectomy)</div><div class="pdef">Surgical removal of a lung lobe; most common surgery for early-stage non-small cell lung cancer</div></div></div>
+        <div class="pitem"><div><div class="pname">Tonsillectomy (tonsill/o + -ectomy)</div><div class="pdef">Surgical removal of tonsils; treats recurrent tonsillitis, sleep apnea, peritonsillar abscess</div></div></div>
+        <div class="pitem"><div><div class="pname">Septoplasty (sept/o + -plasty)</div><div class="pdef">Surgical repair of deviated nasal septum; improves nasal airflow and treats chronic obstruction</div></div></div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);margin:10px 0 6px">Pharmacology</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span class="badge badge-teal">Bronchodilators (beta-2 agonists)</span>
+          <span class="badge badge-violet">Inhaled corticosteroids</span>
+          <span class="badge badge-amber">Antibiotics (pneumonia/TB)</span>
+          <span class="badge badge-coral">Antifungals</span>
+          <span class="badge badge-green">Antihistamines</span>
+          <span class="badge badge-blue">Oxygen therapy</span>
+          <span class="badge badge-slate">Antifibrotics (IPF)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VOCAB ===== -->
+  <div class="section" id="sec-vocab">
+    <div class="sub-tabs" id="vocab-tabs">
+      <button class="sub-tab active" onclick="showVocab('combining',this)">Combining forms</button>
+      <button class="sub-tab" onclick="showVocab('prefixes',this)">Prefixes</button>
+      <button class="sub-tab" onclick="showVocab('suffixes',this)">Suffixes</button>
+      <button class="sub-tab" onclick="showVocab('decode',this)">Term decoding</button>
+    </div>
+    <div class="card">
+      <div class="vpanel active" id="vt-combining">
+        <table class="vtable"><thead><tr><th>Combining form</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+          <tr><td><code>adenoid/o</code></td><td>adenoids (pharyngeal tonsils)</td><td>adenoidectomy</td></tr>
+          <tr><td><code>alveol/o</code></td><td>alveolus (air sac)</td><td>alveolar, alveolitis</td></tr>
+          <tr><td><code>bronch/o</code></td><td>bronchus</td><td>bronchitis, bronchoscopy</td></tr>
+          <tr><td><code>bronchiol/o</code></td><td>bronchiole</td><td>bronchiolar, bronchiolitis</td></tr>
+          <tr><td><code>coni/o</code></td><td>dust</td><td>pneumoconiosis (dust lung)</td></tr>
+          <tr><td><code>cyan/o</code></td><td>blue</td><td>cyanosis</td></tr>
+          <tr><td><code>laryng/o</code></td><td>larynx (voice box)</td><td>laryngitis, laryngoscopy</td></tr>
+          <tr><td><code>lob/o</code></td><td>lobe</td><td>lobectomy</td></tr>
+          <tr><td><code>myc/o</code></td><td>fungus</td><td>rhinomycosis, mycosis</td></tr>
+          <tr><td><code>nas/o</code></td><td>nose</td><td>nasopharynx, nasal</td></tr>
+          <tr><td><code>orth/o</code></td><td>straight, upright</td><td>orthopnea</td></tr>
+          <tr><td><code>ox/o, ox/i</code></td><td>oxygen</td><td>oximetry, hypoxia</td></tr>
+          <tr><td><code>pharyng/o</code></td><td>pharynx (throat)</td><td>pharyngitis, nasopharynx</td></tr>
+          <tr><td><code>phon/o</code></td><td>voice, sound</td><td>phonation, aphonia</td></tr>
+          <tr><td><code>pleur/o</code></td><td>pleura</td><td>pleurisy, pneumothorax</td></tr>
+          <tr><td><code>pneum/o, pneumon/o</code></td><td>lung, air</td><td>pneumonia, pneumothorax</td></tr>
+          <tr><td><code>pulmon/o</code></td><td>lung</td><td>pulmonology, pulmonary</td></tr>
+          <tr><td><code>rhin/o</code></td><td>nose</td><td>rhinorrhea, rhinitis, rhinomycosis</td></tr>
+          <tr><td><code>salping/o</code></td><td>eustachian tube (or fallopian tube)</td><td>salpingitis (ear or tube)</td></tr>
+          <tr><td><code>sept/o</code></td><td>septum (dividing wall)</td><td>septoplasty (nasal septum repair)</td></tr>
+          <tr><td><code>sin/o, sinus/o</code></td><td>sinus</td><td>sinusitis</td></tr>
+          <tr><td><code>spir/o</code></td><td>breathe, breathing</td><td>spirometry, spirometer</td></tr>
+          <tr><td><code>thorac/o</code></td><td>thorax, chest</td><td>thoracodynia, thoracotomy</td></tr>
+          <tr><td><code>tonsill/o</code></td><td>tonsil</td><td>tonsillitis, tonsillectomy</td></tr>
+          <tr><td><code>trache/o</code></td><td>trachea (windpipe)</td><td>tracheostomy, tracheotomy</td></tr>
+        </tbody></table>
+      </div>
+      <div class="vpanel" id="vt-prefixes">
+        <table class="vtable"><thead><tr><th>Prefix</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+          <tr><td><code>a-</code></td><td>without, absence</td><td>apnea (no breathing), aphonia</td></tr>
+          <tr><td><code>brady-</code></td><td>slow</td><td>bradypnea (slow breathing)</td></tr>
+          <tr><td><code>dys-</code></td><td>difficult, painful</td><td>dyspnea (difficult breathing)</td></tr>
+          <tr><td><code>eu-</code></td><td>good, normal</td><td>eupnea (normal breathing)</td></tr>
+          <tr><td><code>ex-</code></td><td>out, away</td><td>exhalation (breathing out)</td></tr>
+          <tr><td><code>hyper-</code></td><td>above, excessive</td><td>hypercapnia (excess CO₂), hyperpnea</td></tr>
+          <tr><td><code>in-</code></td><td>in, into</td><td>inhalation (breathing in)</td></tr>
+          <tr><td><code>para-</code></td><td>beside, near</td><td>paranasal sinuses</td></tr>
+          <tr><td><code>re-</code></td><td>again, back</td><td>respiration (breathing again and again)</td></tr>
+          <tr><td><code>tachy-</code></td><td>fast, rapid</td><td>tachypnea (rapid breathing)</td></tr>
+        </tbody></table>
+      </div>
+      <div class="vpanel" id="vt-suffixes">
+        <table class="vtable"><thead><tr><th>Suffix</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+          <tr><td><code>-dynia</code></td><td>pain</td><td>thoracodynia (chest pain)</td></tr>
+          <tr><td><code>-ectasis</code></td><td>dilation, expansion</td><td>atelectasis (incomplete expansion), bronchiectasis</td></tr>
+          <tr><td><code>-metry</code></td><td>measurement</td><td>spirometry, oximetry</td></tr>
+          <tr><td><code>-pnea</code></td><td>breathing (condition)</td><td>dyspnea, apnea, eupnea, orthopnea</td></tr>
+          <tr><td><code>-ptysis</code></td><td>spitting, coughing up</td><td>hemoptysis (coughing up blood)</td></tr>
+          <tr><td><code>-rrhea</code></td><td>flow, discharge</td><td>rhinorrhea (runny nose)</td></tr>
+          <tr><td><code>-thorax</code></td><td>chest, thorax (condition)</td><td>pneumothorax (air in chest), hemothorax</td></tr>
+        </tbody></table>
+      </div>
+      <div class="vpanel" id="vt-decode">
+        <table class="vtable"><thead><tr><th>Term</th><th>Word parts</th><th>Definition</th></tr></thead><tbody>
+          <tr><td>Atelectasis</td><td>atel/o + -ectasis</td><td>Incomplete expansion / collapse of lung</td></tr>
+          <tr><td>Bronchoscopy</td><td>bronch/o + -scopy</td><td>Visual examination of the bronchi</td></tr>
+          <tr><td>Dyspnea</td><td>dys- + -pnea</td><td>Difficult or labored breathing</td></tr>
+          <tr><td>Eupnea</td><td>eu- + -pnea</td><td>Normal, easy breathing</td></tr>
+          <tr><td>Hemoptysis</td><td>hem/o + -ptysis</td><td>Coughing up blood</td></tr>
+          <tr><td>Hypercapnia</td><td>hyper- + capn/o + -ia</td><td>Excessive CO₂ in the blood</td></tr>
+          <tr><td>Laryngitis</td><td>laryng/o + -itis</td><td>Inflammation of the larynx</td></tr>
+          <tr><td>Lobectomy</td><td>lob/o + -ectomy</td><td>Surgical removal of a lung lobe</td></tr>
+          <tr><td>Orthopnea</td><td>orth/o + -pnea</td><td>Breathing only when upright (not lying flat)</td></tr>
+          <tr><td>Oximetry</td><td>ox/o + -metry</td><td>Measurement of oxygen saturation</td></tr>
+          <tr><td>Pharyngitis</td><td>pharyng/o + -itis</td><td>Inflammation of the pharynx (throat)</td></tr>
+          <tr><td>Pneumoconiosis</td><td>pneumon/o + coni/o + -osis</td><td>Dust lung disease (occupational)</td></tr>
+          <tr><td>Pneumothorax</td><td>pneum/o + -thorax</td><td>Air in the pleural/chest space</td></tr>
+          <tr><td>Rhinomycosis</td><td>rhin/o + myc/o + -osis</td><td>Fungal infection of the nose</td></tr>
+          <tr><td>Rhinorrhea</td><td>rhin/o + -rrhea</td><td>Flow from the nose (runny nose)</td></tr>
+          <tr><td>Septoplasty</td><td>sept/o + -plasty</td><td>Surgical repair of the nasal septum</td></tr>
+          <tr><td>Sinusitis</td><td>sinus/o + -itis</td><td>Inflammation of the sinuses</td></tr>
+          <tr><td>Spirometry</td><td>spir/o + -metry</td><td>Measurement of breathing/lung volumes</td></tr>
+          <tr><td>Thoracodynia</td><td>thorac/o + -dynia</td><td>Pain in the chest/thorax</td></tr>
+          <tr><td>Tonsillectomy</td><td>tonsill/o + -ectomy</td><td>Surgical removal of tonsils</td></tr>
+          <tr><td>Tracheostomy</td><td>trache/o + -stomy</td><td>Surgical creation of a tracheal opening</td></tr>
+          <tr><td>Tracheotomy</td><td>trache/o + -tomy</td><td>Incision into the trachea</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARDS ===== -->
+  <div class="section" id="sec-flashcards">
+    <button class="fc-shuffle" onclick="shuffleCards()">⇄ Shuffle cards</button>
+    <div class="fc-nav">
+      <button class="fc-btn" onclick="prevCard()">&#8592;</button>
+      <div class="fc-counter" id="fc-counter">1 / 26</div>
+      <button class="fc-btn" onclick="nextCard()">&#8594;</button>
+    </div>
+    <div class="flip-wrap" onclick="flipCard()">
+      <div class="flip-inner" id="fc-inner">
+        <div class="flip-front"><div class="flip-term" id="fc-term">pneum/o, pneumon/o</div><div class="flip-hint">click to reveal</div></div>
+        <div class="flip-back"><div class="flip-def" id="fc-def">lung, air</div><div class="flip-ex" id="fc-ex">pneumonia, pneumothorax</div></div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--gray-400);text-align:center;margin-top:10px">Click to flip · Arrows to navigate</div>
+  </div>
+
+  <!-- ===== QUIZ ===== -->
+  <div class="section" id="sec-quiz">
+    <div class="card" id="quiz-card">
+      <div class="quiz-progress" id="quiz-dots"></div>
+      <div class="quiz-q-text" id="quiz-q"></div>
+      <div class="quiz-opts" id="quiz-opts"></div>
+      <div id="quiz-fb" style="display:none"></div>
+      <button class="quiz-next" id="quiz-next" onclick="nextQ()" style="display:none">Next question →</button>
+    </div>
+  </div>
+
+</div>
+<script>
+const SECS=['overview','anatomy','breathing','pathology','procedures','vocab','flashcards','quiz'];
+const visited=new Set(['overview']);
+function showSec(id,btn){
+  SECS.forEach(s=>document.getElementById('sec-'+s).classList.remove('active'));
+  document.querySelectorAll('.nav-row .tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active'); btn.classList.add('active');
+  visited.add(id);
+  const pct=Math.round((visited.size/SECS.length)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').textContent=pct+'%';
+  if(id==='flashcards') renderCard();
+  if(id==='quiz'&&!quizStarted) startQuiz();
+}
+function showPath(id,btn){
+  document.querySelectorAll('[id^="pp-"]').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('#path-tabs .sub-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pp-'+id).classList.add('active'); btn.classList.add('active');
+}
+function showVocab(id,btn){
+  document.querySelectorAll('[id^="vt-"]').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('#vocab-tabs .sub-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('vt-'+id).classList.add('active'); btn.classList.add('active');
+}
+let allCards=[
+  {term:'pneum/o, pneumon/o', def:'lung, air', ex:'pneumonia, pneumothorax'},
+  {term:'pulmon/o', def:'lung', ex:'pulmonology, pulmonary'},
+  {term:'bronch/o', def:'bronchus', ex:'bronchitis, bronchoscopy'},
+  {term:'bronchiol/o', def:'bronchiole', ex:'bronchiolar, bronchiolitis'},
+  {term:'alveol/o', def:'alveolus (air sac)', ex:'alveolar, alveolitis'},
+  {term:'pleur/o', def:'pleura', ex:'pleurisy, pneumothorax'},
+  {term:'trache/o', def:'trachea (windpipe)', ex:'tracheostomy, tracheotomy'},
+  {term:'laryng/o', def:'larynx (voice box)', ex:'laryngitis, laryngoscopy'},
+  {term:'pharyng/o', def:'pharynx (throat)', ex:'pharyngitis, nasopharynx'},
+  {term:'rhin/o, nas/o', def:'nose', ex:'rhinorrhea, rhinomycosis, nasal'},
+  {term:'sinus/o, sin/o', def:'sinus', ex:'sinusitis'},
+  {term:'thorac/o', def:'thorax, chest', ex:'thoracodynia, thoracotomy'},
+  {term:'spir/o', def:'breathe, breathing', ex:'spirometry'},
+  {term:'ox/o, ox/i', def:'oxygen', ex:'oximetry, hypoxia'},
+  {term:'coni/o', def:'dust', ex:'pneumoconiosis'},
+  {term:'myc/o', def:'fungus', ex:'rhinomycosis'},
+  {term:'-pnea', def:'breathing condition', ex:'dyspnea, apnea, eupnea'},
+  {term:'-ptysis', def:'spitting, coughing up', ex:'hemoptysis (blood)'},
+  {term:'-thorax', def:'chest, thorax (condition)', ex:'pneumothorax, hemothorax'},
+  {term:'-ectasis', def:'dilation, expansion', ex:'atelectasis, bronchiectasis'},
+  {term:'-metry', def:'measurement', ex:'spirometry, oximetry'},
+  {term:'-dynia', def:'pain', ex:'thoracodynia'},
+  {term:'eu-', def:'good, normal', ex:'eupnea (normal breathing)'},
+  {term:'dys-', def:'difficult, painful', ex:'dyspnea'},
+  {term:'tachy-', def:'fast, rapid', ex:'tachypnea (rapid breathing)'},
+  {term:'brady-', def:'slow', ex:'bradypnea (slow breathing)'},
+];
+let fcIdx=0,fcFlipped=false;
+function renderCard(){
+  const c=allCards[fcIdx];
+  document.getElementById('fc-term').textContent=c.term;
+  document.getElementById('fc-def').textContent=c.def;
+  document.getElementById('fc-ex').textContent=c.ex;
+  document.getElementById('fc-counter').textContent=(fcIdx+1)+' / '+allCards.length;
+  document.getElementById('fc-inner').classList.remove('flipped'); fcFlipped=false;
+}
+function flipCard(){ fcFlipped=!fcFlipped; document.getElementById('fc-inner').classList.toggle('flipped',fcFlipped); }
+function nextCard(){ fcIdx=(fcIdx+1)%allCards.length; renderCard(); }
+function prevCard(){ fcIdx=(fcIdx-1+allCards.length)%allCards.length; renderCard(); }
+function shuffleCards(){
+  for(let i=allCards.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [allCards[i],allCards[j]]=[allCards[j],allCards[i]]; }
+  fcIdx=0; renderCard();
+}
+const QUIZ=[
+  {q:'What does the suffix -pnea mean?',ans:'Breathing condition',opts:['Chest condition','Breathing condition','Lung measurement','Coughing up']},
+  {q:'Dyspnea (dys- + -pnea) means:',ans:'Difficult or labored breathing',opts:['Normal breathing','Absence of breathing','Difficult or labored breathing','Rapid breathing']},
+  {q:'Hemoptysis (hem/o + -ptysis) is:',ans:'Coughing up blood from the respiratory tract',opts:['Blood in urine','Blood in stool','Coughing up blood from the respiratory tract','Bleeding from the nose']},
+  {q:'Eupnea (eu- + -pnea) means:',ans:'Normal, easy breathing',opts:['Difficult breathing','Rapid breathing','Absence of breathing','Normal, easy breathing']},
+  {q:'Pneumothorax (pneum/o + -thorax) means:',ans:'Air in the pleural/chest space',opts:['Blood in the chest','Fluid in the chest','Air in the pleural/chest space','Pus in the chest']},
+  {q:'Spirometry (spir/o + -metry) measures:',ans:'Lung volumes and airflow — diagnoses asthma and COPD',opts:['Oxygen in the blood','Lung volumes and airflow — diagnoses asthma and COPD','Heart electrical activity','Carbon dioxide in blood']},
+  {q:'Tracheostomy differs from tracheotomy because:',ans:'Tracheostomy creates a permanent opening (stoma); tracheotomy is just an incision',opts:['They are identical','Tracheostomy is an emergency; tracheotomy is planned','Tracheostomy creates a permanent opening (stoma); tracheotomy is just an incision','Tracheotomy involves a larger incision']},
+  {q:'Atelectasis (-ectasis = expansion) refers to:',ans:'Collapse or incomplete expansion of lung tissue',opts:['Dilation of bronchi','Collapse or incomplete expansion of lung tissue','Hardening of alveoli','Inflammation of pleura']},
+  {q:'Orthopnea (orth/o + -pnea) is characterized by:',ans:'Breathing difficulty when lying flat; relieved by sitting upright',opts:['Difficulty breathing at high altitude','Breathing difficulty when lying flat; relieved by sitting upright','Difficulty breathing during exercise','Painful breathing'],},
+  {q:'COPD (chronic obstructive pulmonary disease) is diagnosed by:',ans:'Spirometry showing FEV₁/FVC ratio less than 0.70',opts:['Chest X-ray showing consolidation','Sputum culture positive for bacteria','Spirometry showing FEV₁/FVC ratio less than 0.70','Blood gas showing low pH']},
+  {q:'Rhinorrhea (rhin/o + -rrhea) means:',ans:'Flow from the nose (runny nose)',opts:['Nosebleed','Fungal nose infection','Inflammation of the nasal septum','Flow from the nose (runny nose)']},
+  {q:'Lobectomy (lob/o + -ectomy) is most commonly performed for:',ans:'Early-stage non-small cell lung cancer',opts:['Severe asthma','Pneumonia','Early-stage non-small cell lung cancer','COPD exacerbation']},
+];
+let qIdx=0,score=0,results=[],quizStarted=false;
+function startQuiz(){ quizStarted=true; qIdx=0; score=0; results=[]; renderQ(); }
+function renderQ(){
+  const q=QUIZ[qIdx];
+  document.getElementById('quiz-dots').innerHTML=QUIZ.map((_,i)=>`<div class="q-dot ${i<results.length?(results[i]?'pass':'fail'):''}" title="Q${i+1}"></div>`).join('');
+  document.getElementById('quiz-q').textContent=(qIdx+1)+'. '+q.q;
+  document.getElementById('quiz-opts').innerHTML=q.opts.map(o=>`<button class="q-opt" onclick="checkAns(this,'${o.replace(/'/g,"\\'")}','${q.ans.replace(/'/g,"\\'")}')">${o}</button>`).join('');
+  const fb=document.getElementById('quiz-fb'); fb.style.display='none'; fb.className='q-fb';
+  document.getElementById('quiz-next').style.display='none';
+}
+function checkAns(btn,chosen,correct){
+  document.querySelectorAll('.q-opt').forEach(b=>{ b.disabled=true; if(b.textContent===correct) b.classList.add('correct'); });
+  const ok=chosen===correct;
+  if(ok){ score++; btn.classList.add('correct'); } else btn.classList.add('wrong');
+  results.push(ok);
+  document.getElementById('quiz-dots').innerHTML=QUIZ.map((_,i)=>`<div class="q-dot ${i<results.length?(results[i]?'pass':'fail'):''}" title="Q${i+1}"></div>`).join('');
+  const fb=document.getElementById('quiz-fb');
+  fb.style.display='block'; fb.className='q-fb '+(ok?'correct':'wrong');
+  fb.textContent=ok?'✓ Correct!':`✗ Correct answer: ${correct}`;
+  const nxt=document.getElementById('quiz-next');
+  nxt.style.display='inline-block';
+  nxt.textContent=qIdx===QUIZ.length-1?'See results':'Next question →';
+}
+function nextQ(){ qIdx++; if(qIdx>=QUIZ.length){ showScore(); return; } renderQ(); }
+function showScore(){
+  const pct=Math.round((score/QUIZ.length)*100);
+  const cls=pct>=80?'great':pct>=60?'ok':'retry';
+  const msg=pct>=90?'Outstanding! Chapter 11 mastered.':pct>=70?'Good work! Review a few terms.':'Keep studying — check the breathing terms and pathology tabs.';
+  document.getElementById('quiz-card').innerHTML=`<div class="score-wrap"><div class="score-big ${cls}">${score}/${QUIZ.length}</div><div style="font-size:13px;color:var(--gray-400);margin-top:4px">${pct}%</div><div class="score-msg">${msg}</div><button class="retry-btn" onclick="retakeQuiz()">Retake quiz</button></div>`;
+}
+function retakeQuiz(){
+  document.getElementById('quiz-card').innerHTML=`<div class="quiz-progress" id="quiz-dots"></div><div class="quiz-q-text" id="quiz-q"></div><div class="quiz-opts" id="quiz-opts"></div><div id="quiz-fb" style="display:none"></div><button class="quiz-next" id="quiz-next" onclick="nextQ()" style="display:none">Next question →</button>`;
+  qIdx=0; score=0; results=[]; renderQ();
+}
+</script>
+</body>
+</html>
